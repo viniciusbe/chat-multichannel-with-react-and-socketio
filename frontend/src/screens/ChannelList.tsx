@@ -7,10 +7,8 @@ export const ChannelList = () => {
   return (
     <ul>
       {channels.map(({ id, name }) => (
-        <li>
-          <Link id={id} to={`/chat/${id}`}>
-            {name}
-          </Link>
+        <li key={id}>
+          <Link to={`/chat/${id}`}>{name}</Link>
         </li>
       ))}
     </ul>
