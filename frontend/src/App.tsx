@@ -1,28 +1,23 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ChannelCreate } from "./screens/ChannelCreate";
-import { ChannelList } from "./screens/ChannelList";
+import { Layout } from "./layout";
+
+import { Channels } from "./screens/Channels";
 import { Chat } from "./screens/Chat";
 import { Login } from "./screens/Login";
 
+// import "./layout/index.css";
+
 function App() {
   return (
-    <div>
+    <Layout>
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/chat/:channelId" element={<Chat />} />
-          <Route
-            path="/channels"
-            element={
-              <>
-                <ChannelCreate />
-                <ChannelList />
-              </>
-            }
-          />
+          <Route path="/channels" element={<Channels />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </Layout>
   );
 }
 
