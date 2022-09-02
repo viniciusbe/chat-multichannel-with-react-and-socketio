@@ -8,6 +8,7 @@ export const Input = ({ value, onChange, placeholder }: InputProps) => {
   return (
     <input
       style={{ flexGrow: 1, margin: 0 }}
+      className="form-control"
       type="text"
       value={value}
       onChange={(e) => onChange(e.target.value)}

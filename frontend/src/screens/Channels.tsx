@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { Button } from "../components/Button";
+import { Content } from "../components/Content";
 import { Input } from "../components/Input";
 
 import { useChannelContext } from "../hooks/useChannelContext";
@@ -26,7 +27,9 @@ export const Channels = () => {
   }, []);
 
   return (
-    <Container>
+    <Content>
+      <h1 className="content-title">Criar Canal</h1>
+
       <Form onSubmit={handleSubmit}>
         <Input
           value={channelName}
@@ -43,6 +46,6 @@ export const Channels = () => {
           </li>
         ))}
       </ul>
-    </Container>
+    </Content>
   );
 };

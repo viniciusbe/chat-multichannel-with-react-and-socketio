@@ -1,18 +1,6 @@
 import { styled } from "@stitches/react";
-
-const Container = styled("div", {
-  display: "flex",
-  width: "100vw",
-  height: "100vh",
-});
-
-const Sidebar = styled("menu", {
-  width: 250,
-});
-
-const Main = styled("main", {
-  flexGrow: 1,
-});
+import { Navbar } from "./navbar";
+import { Sidebar } from "./sidebar";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -20,10 +8,12 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <Container>
-      <Sidebar>aaa</Sidebar>
+    <div className="page-wrapper with-sidebar with-navbar">
+      <Navbar />
 
-      <Main>{children}</Main>
-    </Container>
+      <Sidebar />
+
+      <div className="content-wrapper">{children}</div>
+    </div>
   );
 };

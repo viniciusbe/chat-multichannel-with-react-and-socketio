@@ -5,8 +5,6 @@ import { Channels } from "./screens/Channels";
 import { Chat } from "./screens/Chat";
 import { Login } from "./screens/Login";
 
-// import "./layout/index.css";
-
 function App() {
   return (
     <Layout>

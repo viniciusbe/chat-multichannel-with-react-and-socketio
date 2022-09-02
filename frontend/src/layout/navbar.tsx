@@ -1,33 +1,37 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
-
 import { useChannelContext } from "../hooks/useChannelContext";
 import { FormEvent } from "../types/shared";
-import { Form } from "./styles";
 
-export const Login = () => {
+export const Navbar = () => {
   const { login } = useChannelContext();
-  const navigate = useNavigate();
 
   const [userName, setUserName] = useState("");
 
   const onSubmitLogin: FormEvent = (e) => {
     e.preventDefault();
     login(userName);
-    navigate("/channels");
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <nav className="navbar">
+      <div className="navbar-content">
+        <form
+          className="form-inline d-none d-md-flex ml-auto"
+          onSubmit={onSubmitLogin}
+          action="submit"
+        >
+          <Input
+            onChange={setUserName}
+            value={userName}
+            placeholder="Username"
+          />
 
-      <Form onSubmit={onSubmitLogin}>
-        <Input value={userName} onChange={setUserName} placeholder="Seu nome" />
-        <Button disabled={!userName} text="Entrar" />
-      </Form>
-    </div>
+          <Button />
+        </form>
+      </div>
+    </nav>
   );
 };

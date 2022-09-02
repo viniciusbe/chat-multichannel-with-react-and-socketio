@@ -5,7 +5,7 @@ interface ButtonProps {
 
 export const Button = ({ disabled = false, text = "Enviar" }: ButtonProps) => {
   return (
-    <button type="submit" disabled={disabled} style={{ margin: "0 0 0 8px" }}>
+    <button className="btn btn-primary ml-10" type="submit" disabled={disabled}>
       {text}
     </button>
   );
