@@ -6,7 +6,6 @@ import { Input } from "../components/Input";
 
 import { useChannelContext } from "../hooks/useChannelContext";
 import { FormEvent } from "../types/shared";
-import { ChatHeader, Container, Form, MessagesContainer } from "./styles";
 
 export const Chat = () => {
   const { channelId } = useParams<{ channelId: string }>();

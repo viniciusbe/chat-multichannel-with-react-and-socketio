@@ -1,4 +1,3 @@
-import { styled } from "@stitches/react";
 import { Navbar } from "./navbar";
 import { Sidebar } from "./sidebar";
 
@@ -8,7 +7,7 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="page-wrapper with-sidebar with-navbar">
+    <div className="page-wrapper with-sidebar with-navbar with-transitions">
       <Navbar />
 
       <Sidebar />

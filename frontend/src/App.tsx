@@ -1,16 +1,22 @@
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./layout";
 
 import { Channels } from "./screens/Channels";
 import { Chat } from "./screens/Chat";
-import { Login } from "./screens/Login";
+
+import halfmoon from "halfmoon";
 
 function App() {
+  useEffect(() => {
+    halfmoon.onDOMContentLoaded();
+    halfmoon.toggleDarkMode();
+  }, []);
+
   return (
     <Layout>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login />} />
           <Route path="/chat/:channelId" element={<Chat />} />
           <Route path="/channels" element={<Channels />} />
         </Routes>
