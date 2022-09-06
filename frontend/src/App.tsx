@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./layout";
 
-import { Channels } from "./screens/Channels";
 import { Chat } from "./screens/Chat";
 
 import halfmoon from "halfmoon";
+import "halfmoon/css/halfmoon-variables.min.css";
 
 function App() {
   useEffect(() => {
@@ -17,8 +17,7 @@ function App() {
     <Layout>
       <BrowserRouter>
         <Routes>
-          <Route path="/chat/:channelId" element={<Chat />} />
-          <Route path="/channels" element={<Channels />} />
+          <Route path="/" element={<Chat />} />
         </Routes>
       </BrowserRouter>
     </Layout>

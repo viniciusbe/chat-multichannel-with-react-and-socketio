@@ -25,8 +25,6 @@ export const Navbar = () => {
     halfmoon.toggleSidebar();
   };
 
-  console.log(userNameInput);
-
   return (
     <nav className="navbar">
       <div className="navbar-content justify-content-between w-full">

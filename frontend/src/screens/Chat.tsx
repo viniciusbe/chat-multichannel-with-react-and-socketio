@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
@@ -8,10 +7,7 @@ import { useChannelContext } from "../hooks/useChannelContext";
 import { FormEvent } from "../types/shared";
 
 export const Chat = () => {
-  const { channelId } = useParams<{ channelId: string }>();
-  const navigate = useNavigate();
-
-  const { channel, joinChannel, createMessage, userName } = useChannelContext();
+  const { channel, createMessage } = useChannelContext();
 
   const [message, setMessage] = useState("");
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -34,25 +30,13 @@ export const Chat = () => {
     goToBottom();
   }, [channel?.messages]);
 
-  useEffect(() => {
-    if (!channelId) return navigate("/channels");
-
-    if (!userName) {
-      navigate("/login");
-      return;
-    }
-
-    joinChannel(channelId);
-  }, []);
-
   return (
-    <Container>
-      <ChatHeader>
+    <div className="card">
+      <div className="card-title">
         <h5># {channel?.name}</h5>
-        <Link to="/channels">Voltar</Link>
-      </ChatHeader>
+      </div>
 
-      <MessagesContainer ref={scrollContainerRef}>
+      <div ref={scrollContainerRef} className="content">
         {channel?.messages.length ? (
           channel?.messages.map((message, i) => (
             <div key={i}>
@@ -62,12 +46,12 @@ export const Chat = () => {
         ) : (
           <span>Nenhuma mensagem até agora :)</span>
         )}
-      </MessagesContainer>
+      </div>
 
-      <Form onSubmit={onSubmitMessage}>
+      <form onSubmit={onSubmitMessage}>
         <Input value={message} onChange={setMessage} placeholder="Mensagem" />
         <Button disabled={!message} />
-      </Form>
-    </Container>
+      </form>
+    </div>
   );
 };
