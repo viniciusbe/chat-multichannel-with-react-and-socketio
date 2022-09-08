@@ -36,7 +36,7 @@ export const Chat = () => {
         <h5># {channel?.name}</h5>
       </div>
 
-      <div ref={scrollContainerRef} className="content">
+      <div ref={scrollContainerRef}>
         {channel?.messages.length ? (
           channel?.messages.map((message, i) => (
             <div key={i}>
@@ -48,7 +48,7 @@ export const Chat = () => {
         )}
       </div>
 
-      <form onSubmit={onSubmitMessage}>
+      <form onSubmit={onSubmitMessage} className="d-flex mt-10">
         <Input value={message} onChange={setMessage} placeholder="Mensagem" />
         <Button disabled={!message} />
       </form>

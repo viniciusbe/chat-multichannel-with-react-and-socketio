@@ -3,12 +3,19 @@ import { useState } from "react";
 import { Button } from "../components/Button";
 import { Content } from "../components/Content";
 import { Input } from "../components/Input";
+import { IChannel } from "../context/ChannelContext";
 
 import { useChannelContext } from "../hooks/useChannelContext";
 
-export const Channels = () => {
+import { IoMdAdd } from "react-icons/io";
+
+interface ChannelsProps {
+  filteredChannels: IChannel[];
+}
+
+export const Channels = ({ filteredChannels }: ChannelsProps) => {
   const [channelName, setChannelName] = useState("");
-  const { createChannel, channels, joinChannel } = useChannelContext();
+  const { createChannel, joinChannel, channel } = useChannelContext();
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -18,25 +25,28 @@ export const Channels = () => {
   };
 
   return (
-    <Content>
-      <h1 className="content-title">Criar Canal</h1>
+    <>
+      {filteredChannels.map(({ id, name }) => (
+        <a
+          href={`#${id}`}
+          key={id}
+          className={`sidebar-link ${id === channel?.id ? "active" : ""} `}
+          onClick={() => joinChannel(id)}
+        >
+          {name}
+        </a>
+      ))}
 
-      <form onSubmit={handleSubmit}>
+      <form className="sidebar-content d-flex" onSubmit={handleSubmit}>
         <Input
           value={channelName}
           onChange={setChannelName}
-          placeholder="Nome do Canal"
+          placeholder="Channel name"
         />
-        <Button disabled={!channelName} text="Criar" />
+        <Button disabled={!channelName}>
+          <IoMdAdd />
+        </Button>
       </form>
-
-      <ul>
-        {channels.map(({ id, name }) => (
-          <li key={id} className="sidebar-link" onClick={() => joinChannel(id)}>
-            {name}
-          </li>
-        ))}
-      </ul>
-    </Content>
+    </>
   );
 };
