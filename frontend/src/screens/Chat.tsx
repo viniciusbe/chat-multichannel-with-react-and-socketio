@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from "react";
 
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
+import { NoUserFound } from "../components/NoUserFound";
 
 import { useChannelContext } from "../hooks/useChannelContext";
 import { FormEvent } from "../types/shared";
 
 export const Chat = () => {
-  const { channel, createMessage } = useChannelContext();
+  const { channel, createMessage, userName } = useChannelContext();
 
   const [message, setMessage] = useState("");
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -31,27 +32,37 @@ export const Chat = () => {
   }, [channel?.messages]);
 
   return (
-    <div className="card">
-      <div className="card-title">
-        <h5># {channel?.name}</h5>
-      </div>
+    <div className="card d-flex flex-column h-full m-0">
+      {userName ? (
+        <>
+          <div className="card-title mt-0">
+            <h5 className="mt-0"># {channel?.name}</h5>
+          </div>
 
-      <div ref={scrollContainerRef}>
-        {channel?.messages.length ? (
-          channel?.messages.map((message, i) => (
-            <div key={i}>
-              <strong>{message.userName}</strong>: {message.message}
-            </div>
-          ))
-        ) : (
-          <span>Nenhuma mensagem até agora :)</span>
-        )}
-      </div>
+          <div ref={scrollContainerRef} className="overflow-auto  flex-grow-1">
+            {channel?.messages.length ? (
+              channel?.messages.map((message, i) => (
+                <p className="my-5" key={i}>
+                  <strong>{message.userName}</strong>: {message.message}
+                </p>
+              ))
+            ) : (
+              <span>Nenhuma mensagem até agora :)</span>
+            )}
+          </div>
 
-      <form onSubmit={onSubmitMessage} className="d-flex mt-10">
-        <Input value={message} onChange={setMessage} placeholder="Mensagem" />
-        <Button disabled={!message} />
-      </form>
+          <form onSubmit={onSubmitMessage} className="d-flex mt-20">
+            <Input
+              value={message}
+              onChange={setMessage}
+              placeholder="Message"
+            />
+            <Button disabled={!message} />
+          </form>
+        </>
+      ) : (
+        <NoUserFound />
+      )}
     </div>
   );
 };

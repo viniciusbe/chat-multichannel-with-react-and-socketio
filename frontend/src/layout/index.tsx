@@ -12,7 +12,7 @@ export const Layout = ({ children }: LayoutProps) => {
 
       <Sidebar />
 
-      <div className="content-wrapper">{children}</div>
+      <div className="content-wrapper p-20">{children}</div>
     </div>
   );
 };

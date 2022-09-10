@@ -6,12 +6,28 @@ import { Chat } from "./screens/Chat";
 
 import halfmoon from "halfmoon";
 import "halfmoon/css/halfmoon-variables.min.css";
+import { useChannelContext } from "./hooks/useChannelContext";
 
 function App() {
+  const { channels, createChannel, joinChannel, channel } = useChannelContext();
+
   useEffect(() => {
     halfmoon.onDOMContentLoaded();
     halfmoon.toggleDarkMode();
   }, []);
+
+  useEffect(() => {
+    if (!channels.length) {
+      createChannel("First Channel");
+
+      return;
+    }
+
+    if (!channel) {
+      const [firstChannel] = channels;
+      joinChannel(firstChannel.id);
+    }
+  }, [channels, channel]);
 
   return (
     <Layout>

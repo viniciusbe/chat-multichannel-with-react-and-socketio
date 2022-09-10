@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { Button } from "../components/Button";
-import { Content } from "../components/Content";
 import { Input } from "../components/Input";
 import { IChannel } from "../context/ChannelContext";
 
@@ -26,16 +25,18 @@ export const Channels = ({ filteredChannels }: ChannelsProps) => {
 
   return (
     <>
-      {filteredChannels.map(({ id, name }) => (
-        <a
-          href={`#${id}`}
-          key={id}
-          className={`sidebar-link ${id === channel?.id ? "active" : ""} `}
-          onClick={() => joinChannel(id)}
-        >
-          {name}
-        </a>
-      ))}
+      <div className="flex-grow-1 overflow-auto">
+        {filteredChannels.map(({ id, name }) => (
+          <a
+            href={`#${id}`}
+            key={id}
+            className={`sidebar-link ${id === channel?.id ? "active" : ""} `}
+            onClick={() => joinChannel(id)}
+          >
+            {name}
+          </a>
+        ))}
+      </div>
 
       <form className="sidebar-content d-flex" onSubmit={handleSubmit}>
         <Input

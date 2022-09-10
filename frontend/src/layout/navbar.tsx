@@ -37,7 +37,7 @@ export const Navbar = () => {
         </button>
 
         {userName ? (
-          userName
+          <div className="ml-auto">{`Hello, ${userName}`}</div>
         ) : (
           <form
             className="form-inline d-none d-md-flex ml-auto"
@@ -47,10 +47,10 @@ export const Navbar = () => {
             <Input
               onChange={setUserNameInput}
               value={userNameInput}
-              placeholder="Username"
+              placeholder="Your name"
             />
 
-            <Button disabled={!userNameInput} />
+            <Button disabled={!userNameInput}>Login</Button>
           </form>
         )}
 
