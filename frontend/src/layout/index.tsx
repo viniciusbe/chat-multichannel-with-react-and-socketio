@@ -7,7 +7,10 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="page-wrapper with-sidebar with-navbar with-transitions">
+    <div
+      className="page-wrapper with-sidebar with-navbar with-transitions"
+      data-sidebar-type="full-height"
+    >
       <Navbar />
 
       <Sidebar />

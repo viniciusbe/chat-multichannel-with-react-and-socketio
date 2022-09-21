@@ -47,7 +47,7 @@ export const Chat = () => {
                 </p>
               ))
             ) : (
-              <span>Nenhuma mensagem até agora :)</span>
+              <span>No messages yet :)</span>
             )}
           </div>
 

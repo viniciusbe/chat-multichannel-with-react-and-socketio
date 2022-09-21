@@ -40,7 +40,7 @@ export const Navbar = () => {
           <div className="ml-auto">{`Hello, ${userName}`}</div>
         ) : (
           <form
-            className="form-inline d-none d-md-flex ml-auto"
+            className="form-inline d-none d-flex ml-auto"
             onSubmit={onSubmitLogin}
             action="submit"
           >
